@@ -135,7 +135,7 @@ export default function App() {
       {/* ========================================================= */}
       {/* SECTION 1: THE OPENING APOLOGY (HERO) */}
       {/* ========================================================= */}
-      <section className="min-h-[100dvh] sm:min-h-screen flex flex-col items-center justify-between px-3 sm:px-6 py-6 sm:py-12 relative max-w-4xl mx-auto text-center">
+      <section className="min-h-[100dvh] sm:min-h-screen flex flex-col items-center justify-center sm:justify-between px-3 sm:px-6 py-6 sm:py-12 relative max-w-4xl mx-auto text-center">
         
         {/* Floating Interactive Decorative Stars */}
         <div 
@@ -171,7 +171,7 @@ export default function App() {
         </div>
 
         {/* Hero Title & Subtitle */}
-        <div className="space-y-2 sm:space-y-3 z-10 pt-2 sm:pt-6 max-w-2xl px-2">
+        <div className="space-y-1.5 sm:space-y-3 z-10 pt-2 sm:pt-6 max-w-2xl px-2">
           <div 
             className="inline-block px-3.5 py-1 rounded-full bg-[#80685D]/60 border-2 border-[#29211F] text-[#F1E3D9] font-hand text-base sm:text-lg tracking-wider transform -rotate-2 select-none hover:rotate-0 transition-transform cursor-default"
             onMouseEnter={() => playSound('hover', soundEnabled)}
@@ -190,7 +190,7 @@ export default function App() {
 
         {/* Dinosaur Illustration in Hero (centered with 'I am so saury...' badge) */}
         <div 
-          className="my-auto py-3 sm:py-4 relative z-10 animate-bob cursor-pointer flex flex-col items-center justify-center text-center"
+          className="my-2 sm:my-auto py-1 sm:py-4 relative z-10 animate-bob cursor-pointer flex flex-col items-center justify-center text-center"
           style={{
             transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
             transition: 'transform 0.15s ease-out'
@@ -203,18 +203,18 @@ export default function App() {
           
           <Dinosaur 
             pose="guilty" 
-            className="w-52 h-52 sm:w-72 sm:h-72 md:w-80 md:h-80 mx-auto drop-shadow-md hover:scale-105 transition-transform" 
+            className="w-48 h-48 sm:w-72 sm:h-72 md:w-80 md:h-80 mx-auto drop-shadow-md hover:scale-105 transition-transform" 
           />
 
           {/* Little handwritten badge centered directly under the dino */}
-          <div className="mt-2.5 sm:mt-3 px-4 py-1.5 sm:px-5 sm:py-1.5 bg-[#F1E3D9] rounded-2xl border-[2.5px] sm:border-[3px] border-[#29211F] shadow-cartoon-sm font-hand text-base sm:text-lg text-[#29211F] select-none inline-flex items-center gap-1.5 z-10">
+          <div className="mt-1.5 sm:mt-3 px-4 py-1.5 sm:px-5 sm:py-1.5 bg-[#F1E3D9] rounded-2xl border-[2.5px] sm:border-[3px] border-[#29211F] shadow-cartoon-sm font-hand text-base sm:text-lg text-[#29211F] select-none inline-flex items-center gap-1.5 z-10">
             <span>"I am so saury..."</span>
             <span className="text-sm">🥺</span>
           </div>
         </div>
 
         {/* Scroll cue at the bottom */}
-        <div className="z-10 pb-2 sm:pb-4">
+        <div className="z-10 mt-3 sm:mt-0 pb-2 sm:pb-4">
           <button
             onClick={() => scrollToSection('section-confession')}
             onMouseEnter={() => playSound('hover', soundEnabled)}
@@ -445,7 +445,7 @@ export default function App() {
           >
             
             {/* Dinosaur character reacts to forgiveness or dodging */}
-            <div className="relative pt-12 sm:pt-14">
+            <div className="w-full flex flex-col items-center justify-center relative pt-12 sm:pt-14">
               {forgiven ? (
                 <div 
                   className="animate-bounce-soft cursor-pointer"
@@ -467,11 +467,11 @@ export default function App() {
                 </div>
               )}
 
-              {/* Speech bubble when "No" is dodged with generous gap above dino */}
+              {/* Speech bubble when "No" is dodged - perfectly centered above dino */}
               {!forgiven && noDodgeMessage && (
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 px-4 py-1.5 sm:px-5 sm:py-2 bg-[#FF8A3D] text-white font-hand text-sm sm:text-base md:text-lg rounded-2xl border-[2.5px] sm:border-[3px] border-[#29211F] shadow-cartoon-sm whitespace-nowrap animate-bounce-soft z-20 select-none">
-                  {noDodgeMessage}
-                  {/* Cute speech bubble tail pointing down */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-max max-w-[90%] sm:max-w-md px-3.5 py-1.5 sm:px-5 sm:py-2 bg-[#FF8A3D] text-white font-hand text-sm sm:text-base md:text-lg rounded-2xl border-[2.5px] sm:border-[3px] border-[#29211F] shadow-cartoon-sm text-center leading-snug animate-bounce-soft z-20 select-none">
+                  <span className="block">{noDodgeMessage}</span>
+                  {/* Cute speech bubble tail pointing down in the center */}
                   <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-x-[7px] sm:border-x-[8px] border-x-transparent border-t-[7px] sm:border-t-[8px] border-t-[#29211F]"></div>
                   <div className="absolute -bottom-[5px] left-1/2 -translate-x-1/2 w-0 h-0 border-x-[5px] sm:border-x-[6px] border-x-transparent border-t-[5px] sm:border-t-[6px] border-t-[#FF8A3D]"></div>
                 </div>
