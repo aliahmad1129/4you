@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    color-scheme: light;
+  }
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
   body {
     font-family: 'Nunito', sans-serif;
@@ -12,6 +16,7 @@
     background-color: #9B8275;
     background-image: radial-gradient(rgba(241, 227, 217, 0.08) 1.5px, transparent 1.5px);
     background-size: 28px 28px;
+    -webkit-tap-highlight-color: transparent;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Fredoka', 'Baloo 2', cursive, sans-serif;
@@ -35,6 +40,7 @@
   border: 3.5px solid #29211F;
   border-radius: 9999px;
   box-shadow: 0 6px 0 0 #29211F;
+  touch-action: manipulation;
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-cartoon-yellow:hover {
@@ -53,6 +59,7 @@
   border: 3.5px solid #29211F;
   border-radius: 9999px;
   box-shadow: 0 6px 0 0 #29211F;
+  touch-action: manipulation;
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-cartoon-white:hover {
@@ -78,4 +85,17 @@
   border: 3.5px solid #29211F;
   border-radius: 28px;
   box-shadow: 0 8px 0 0 #29211F;
+}
+
+/* Mobile refinements (responsive touch ergonomics and scaled cartoon shadows) */
+@media (max-width: 640px) {
+  .btn-cartoon-yellow, .btn-cartoon-white {
+    border-width: 3px;
+    box-shadow: 0 4px 0 0 #29211F;
+  }
+  .paper-card, .paper-card-beige {
+    border-width: 3px;
+    border-radius: 22px;
+    box-shadow: 0 5px 0 0 #29211F;
+  }
 }
