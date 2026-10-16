@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import confetti from 'canvas-confetti';
 import Dinosaur from './components/Dinosaur';
 import { Star, CartoonAlarmClock, CuteHeart } from './components/Decorations';
 import { playSound } from './utils/sound';
@@ -62,7 +61,7 @@ export default function App() {
   };
 
   // YES celebration button handler
-  const handleYesClick = () => {
+  const handleYesClick = async () => {
     playSound('celebrate', soundEnabled);
     setForgiven(true);
 
@@ -75,26 +74,33 @@ export default function App() {
       console.warn('Email trigger notification skipped/failed:', err);
     });
 
-    // Confetti burst with soft palette matching the illustration
-    const count = 120;
-    const defaults = {
-      origin: { y: 0.65 },
-      colors: ['#FFD95A', '#FF8A3D', '#F1E3D9', '#FFE59A', '#FF8A8A']
-    };
+    try {
+      // Dynamic import to keep initial bundle size lean and fast
+      const { default: confetti } = await import('canvas-confetti');
 
-    function fire(particleRatio, opts) {
-      confetti({
-        ...defaults,
-        ...opts,
-        particleCount: Math.floor(count * particleRatio)
-      });
+      // Confetti burst with soft palette matching the illustration
+      const count = 120;
+      const defaults = {
+        origin: { y: 0.65 },
+        colors: ['#FFD95A', '#FF8A3D', '#F1E3D9', '#FFE59A', '#FF8A8A']
+      };
+
+      function fire(particleRatio, opts) {
+        confetti({
+          ...defaults,
+          ...opts,
+          particleCount: Math.floor(count * particleRatio)
+        });
+      }
+
+      fire(0.25, { spread: 26, startVelocity: 45 });
+      fire(0.2, { spread: 60 });
+      fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+      fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+      fire(0.1, { spread: 120, startVelocity: 45 });
+    } catch (err) {
+      console.warn('Confetti animation skipped:', err);
     }
-
-    fire(0.25, { spread: 26, startVelocity: 45 });
-    fire(0.2, { spread: 60 });
-    fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-    fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-    fire(0.1, { spread: 120, startVelocity: 45 });
   };
 
   const scrollToSection = (id) => {
@@ -229,7 +235,7 @@ export default function App() {
       {/* ========================================================= */}
       {/* SECTION 2: THE CONFESSION (15 MIN VS 40 MIN) */}
       {/* ========================================================= */}
-      <section id="section-confession" className="py-12 sm:py-20 px-3 sm:px-6 relative">
+      <section id="section-confession" className="section-deferred py-12 sm:py-20 px-3 sm:px-6 relative">
         <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10 text-center">
           
           {/* Section Header */}
@@ -328,7 +334,7 @@ export default function App() {
       {/* ========================================================= */}
       {/* SECTION 3: THE HEARTFELT APOLOGY */}
       {/* ========================================================= */}
-      <section className="py-12 sm:py-20 px-3 sm:px-6 relative bg-[#80685D]/40 border-y-[3px] sm:border-y-[3.5px] border-[#29211F]">
+      <section className="section-deferred py-12 sm:py-20 px-3 sm:px-6 relative bg-[#80685D]/40 border-y-[3px] sm:border-y-[3.5px] border-[#29211F]">
         
         {/* Subtle decorative hearts */}
         <div 
@@ -419,7 +425,7 @@ export default function App() {
       {/* ========================================================= */}
       {/* SECTION 4: THE FORGIVENESS INTERACTION */}
       {/* ========================================================= */}
-      <section id="section-forgiveness" className="py-12 sm:py-20 px-3 sm:px-6 relative">
+      <section id="section-forgiveness" className="section-deferred py-12 sm:py-20 px-3 sm:px-6 relative">
         <div className="max-w-3xl mx-auto text-center space-y-6 sm:space-y-8">
           
           {/* Header */}
@@ -550,7 +556,7 @@ export default function App() {
       {/* ========================================================= */}
       {/* SECTION 5: THE PROMISE */}
       {/* ========================================================= */}
-      <section id="section-promise" className="py-12 sm:py-20 px-3 sm:px-6 relative bg-[#80685D]/30 border-t-[3px] sm:border-t-[3.5px] border-[#29211F]">
+      <section id="section-promise" className="section-deferred py-12 sm:py-20 px-3 sm:px-6 relative bg-[#80685D]/30 border-t-[3px] sm:border-t-[3.5px] border-[#29211F]">
         <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
           
           {/* Header */}

@@ -99,3 +99,10 @@
     box-shadow: 0 5px 0 0 #29211F;
   }
 }
+
+/* Rendering performance: Defer off-screen section layout and paint */
+.section-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+

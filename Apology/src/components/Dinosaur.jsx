@@ -23,8 +23,20 @@ export default function Dinosaur({
 }) {
   const [imageError, setImageError] = useState(false);
 
-  // Map pose to expected image filenames
-  const imageMap = {
+  const isHero = pose === 'guilty' || pose === 'hero';
+
+  // Map pose to WebP and PNG filenames
+  const imageMapWebp = {
+    guilty: '/images/dino-hero.webp',
+    hero: '/images/dino-hero.webp',
+    sleepy: '/images/dino-sleepy.webp',
+    apologetic: '/images/dino-flower.webp',
+    pleading: '/images/dino-pleading.webp',
+    happy: '/images/dino-happy.webp',
+    determined: '/images/dino-determined.webp',
+  };
+
+  const imageMapPng = {
     guilty: '/images/dino-hero.png',
     hero: '/images/dino-hero.png',
     sleepy: '/images/dino-sleepy.png',
@@ -34,12 +46,13 @@ export default function Dinosaur({
     determined: '/images/dino-determined.png',
   };
 
-  const imageSrc = imageMap[pose] || imageMap.guilty;
+  const webpSrc = imageMapWebp[pose] || imageMapWebp.guilty;
+  const pngSrc = imageMapPng[pose] || imageMapPng.guilty;
 
-  // Reset error state if pose/imageSrc changes
+  // Reset error state if pose changes
   React.useEffect(() => {
     setImageError(false);
-  }, [imageSrc]);
+  }, [pose]);
 
   // If custom image loaded successfully without error
   if (!imageError) {
@@ -50,13 +63,21 @@ export default function Dinosaur({
         onMouseEnter={onMouseEnter}
         onClick={onClick}
       >
-        <img 
-          src={imageSrc} 
-          alt={`Cute cartoon dinosaur expressing ${pose}`}
-          draggable={false}
-          className="w-full h-full object-contain filter drop-shadow-md select-none pointer-events-none"
-          onError={() => setImageError(true)}
-        />
+        <picture className="w-full h-full flex items-center justify-center">
+          <source srcSet={webpSrc} type="image/webp" />
+          <img 
+            src={pngSrc} 
+            alt={`Cute cartoon dinosaur expressing ${pose}`}
+            draggable={false}
+            width="320"
+            height="320"
+            loading={isHero ? "eager" : "lazy"}
+            decoding="async"
+            fetchpriority={isHero ? "high" : "low"}
+            className="w-full h-full object-contain filter drop-shadow-md select-none pointer-events-none"
+            onError={() => setImageError(true)}
+          />
+        </picture>
       </div>
     );
   }
