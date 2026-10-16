@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: #29211F;
+    background-color: #9B8275;
+    background-image: radial-gradient(rgba(241, 227, 217, 0.08) 1.5px, transparent 1.5px);
+    background-size: 28px 28px;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fredoka', 'Baloo 2', cursive, sans-serif;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Cartoon button tactile feel */
+.btn-cartoon-yellow {
+  background-color: #FFD95A;
+  color: #29211F;
+  border: 3.5px solid #29211F;
+  border-radius: 9999px;
+  box-shadow: 0 6px 0 0 #29211F;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-cartoon-yellow:hover {
+  background-color: #FFE59A;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 0 #29211F;
+}
+.btn-cartoon-yellow:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 0 #29211F;
+}
+
+.btn-cartoon-white {
+  background-color: #F1E3D9;
+  color: #29211F;
+  border: 3.5px solid #29211F;
+  border-radius: 9999px;
+  box-shadow: 0 6px 0 0 #29211F;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-cartoon-white:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 0 #29211F;
+}
+.btn-cartoon-white:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 0 #29211F;
+}
+
+/* Hand-drawn style decorative card */
+.paper-card {
+  background-color: #F1E3D9;
+  border: 3.5px solid #29211F;
+  border-radius: 28px;
+  box-shadow: 0 8px 0 0 #29211F;
+}
+
+.paper-card-beige {
+  background-color: #DCC9BD;
+  border: 3.5px solid #29211F;
+  border-radius: 28px;
+  box-shadow: 0 8px 0 0 #29211F;
+}
